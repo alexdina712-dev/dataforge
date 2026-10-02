@@ -9,7 +9,7 @@ test.afterEach(async ({ page }) => {
   expect(browserErrors.get(page), 'Uncaught browser exceptions').toEqual([]);
 });
 import path from 'node:path';
-const origin = () => process.env.PUBLIC_BASE_URL || 'http://127.0.0.1:5176';
+const origin = () => process.env.PUBLIC_BASE_URL || 'http://127.0.0.1:5186';
 test.beforeEach(async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Make your data work for you.' })).toBeVisible();

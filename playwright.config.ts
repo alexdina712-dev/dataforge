@@ -8,7 +8,7 @@ export default defineConfig({
   expect: { timeout: 15000 },
   reporter: [['list'], ['html', { open: 'never' }]],
   use: {
-    baseURL: 'http://127.0.0.1:5176',
+    baseURL: 'http://127.0.0.1:5186',
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
   },
@@ -21,16 +21,18 @@ export default defineConfig({
     {
       command:
         process.platform === 'win32'
-          ? '.venv/Scripts/python.exe -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8004 --limit-concurrency 20'
-          : 'python -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8004 --limit-concurrency 20',
-      url: 'http://127.0.0.1:8004/api/health',
-      reuseExistingServer: !process.env.CI,
+          ? '.venv/Scripts/python.exe -m uvicorn e2e_server:app --app-dir backend/tests --host 127.0.0.1 --port 8005 --limit-concurrency 20'
+          : 'python -m uvicorn e2e_server:app --app-dir backend/tests --host 127.0.0.1 --port 8005 --limit-concurrency 20',
+      url: 'http://127.0.0.1:8005/api/health',
+      env: { PYTHONPATH: 'backend', APP_ORIGIN: 'http://127.0.0.1:5186', ENVIRONMENT: 'test' },
+      reuseExistingServer: false,
       timeout: 60000,
     },
     {
-      command: 'pnpm dev',
-      url: 'http://127.0.0.1:5176',
-      reuseExistingServer: !process.env.CI,
+      command: 'node node_modules/vite/bin/vite.js --host 127.0.0.1 --port 5186',
+      url: 'http://127.0.0.1:5186',
+      env: { API_PROXY_TARGET: 'http://127.0.0.1:8005' },
+      reuseExistingServer: false,
       timeout: 60000,
     },
   ],

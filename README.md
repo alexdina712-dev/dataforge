@@ -134,7 +134,7 @@ pnpm exec playwright install chromium
 pnpm test:e2e
 ```
 
-pytest covers pure transforms, malformed files, exports, sessions, ownership, expiry, revisions and resource/security boundaries. Vitest checks client validation and zero/false/missing formatting. Six Playwright workflows use real frontend/API instances on desktop and mobile Chromium. Tests remove their fictional datasets.
+pytest covers pure transforms, malformed files, exports, sessions, ownership, expiry, revisions and resource/security boundaries. Vitest checks client validation and zero/false/missing formatting. Six Playwright workflows use real frontend/API instances on desktop, tablet and mobile Chromium. Tests remove their fictional datasets. Local browser tests use dedicated ports 5186/8005 and a test-only adapter with a larger import budget, so repeated runs cannot exhaust or overwrite the normal demo workspace. Production rate limits are unchanged and have separate API coverage.
 
 GitHub Actions runs lint/unit/API/build checks and browser tests, retaining browser diagnostics on failure. Starlette currently emits an upstream httpx TestClient deprecation warning; tests pass without replacing its transport.
 
