@@ -21,7 +21,7 @@ export default defineConfig({
     {
       command:
         process.platform === 'win32'
-          ? '.venv/Scripts/python.exe -m uvicorn e2e_server:app --app-dir backend/tests --host 127.0.0.1 --port 8005 --limit-concurrency 20'
+          ? '".venv\\Scripts\\python.exe" -m uvicorn e2e_server:app --app-dir backend/tests --host 127.0.0.1 --port 8005 --limit-concurrency 20'
           : 'python -m uvicorn e2e_server:app --app-dir backend/tests --host 127.0.0.1 --port 8005 --limit-concurrency 20',
       url: 'http://127.0.0.1:8005/api/health',
       env: { PYTHONPATH: 'backend', APP_ORIGIN: 'http://127.0.0.1:5186', ENVIRONMENT: 'test' },
