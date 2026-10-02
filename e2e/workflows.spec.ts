@@ -1,4 +1,13 @@
 import { test, expect, type Page } from '@playwright/test';
+const browserErrors = new WeakMap<Page, string[]>();
+test.beforeEach(async ({ page }) => {
+  const errors: string[] = [];
+  browserErrors.set(page, errors);
+  page.on('pageerror', (error) => errors.push(error.message));
+});
+test.afterEach(async ({ page }) => {
+  expect(browserErrors.get(page), 'Uncaught browser exceptions').toEqual([]);
+});
 import path from 'node:path';
 const origin = () => process.env.PUBLIC_BASE_URL || 'http://127.0.0.1:5176';
 test.beforeEach(async ({ page }) => {

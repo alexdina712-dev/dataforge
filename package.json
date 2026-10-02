@@ -12,9 +12,9 @@
     "test:e2e:public": "playwright test --config playwright.public.config.ts"
   },
   "dependencies": {
+    "lucide-react": "^0.468.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "lucide-react": "^0.468.0",
     "zod": "^3.25.76"
   },
   "devDependencies": {
@@ -26,7 +26,7 @@
     "prettier": "^3.9.9",
     "typescript": "^5.9.2",
     "vite": "^6.3.6",
-    "vitest": "^3.2.4"
+    "vitest": "^4.1.11"
   },
   "engines": {
     "node": ">=22 <25"
