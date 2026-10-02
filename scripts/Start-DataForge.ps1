@@ -44,7 +44,7 @@ if (-not $launcherRunning) {
 }
 $ready = $false
 for ($attempt = 0; $attempt -lt 30; $attempt++) {
-    try { $api = Invoke-RestMethod 'http://127.0.0.1:8004/api/health' -TimeoutSec 2; $web = Invoke-WebRequest 'http://127.0.0.1:5176' -TimeoutSec 2; if ($api.status -eq 'ok' -and $web.StatusCode -eq 200) { $ready = $true; break } } catch {}
+    try { $api = Invoke-RestMethod 'http://127.0.0.1:8004/api/health' -TimeoutSec 2; $web = Invoke-WebRequest 'http://127.0.0.1:5176' -UseBasicParsing -TimeoutSec 2; if ($api.status -eq 'ok' -and $web.StatusCode -eq 200) { $ready = $true; break } } catch {}
     Start-Sleep -Milliseconds 500
 }
 if (-not $ready) { throw 'DataForge did not start. Check .runtime logs; make sure ports 8004/5176/5177 are free.' }
