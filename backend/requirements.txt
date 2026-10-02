@@ -22,3 +22,5 @@ starlette==1.7.0
 typing-extensions==4.16.0
 typing-inspection==0.4.4
 uvicorn==0.54.0
+colorama==0.4.6; platform_system == "Windows"
+tzdata==2026.4; platform_system == "Windows"

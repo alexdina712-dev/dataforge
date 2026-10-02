@@ -32,13 +32,11 @@ test('profiles and browses a sample without changing its original', async ({ pag
   await expect(page.locator('.pagination')).toContainText(/1.25 of 27/);
 });
 test('uploads CSV, previews cleaning, applies and undoes exact changes', async ({ page }) => {
-  await page
-    .getByLabel('Upload CSV or Excel file')
-    .setInputFiles({
-      name: 'messy.csv',
-      mimeType: 'text/csv',
-      buffer: Buffer.from('Name,Amount,City\n Ava ,10,Paris\n Ava ,10,Paris\nNoah,,\n'),
-    });
+  await page.getByLabel('Upload CSV or Excel file').setInputFiles({
+    name: 'messy.csv',
+    mimeType: 'text/csv',
+    buffer: Buffer.from('Name,Amount,City\n Ava ,10,Paris\n Ava ,10,Paris\nNoah,,\n'),
+  });
   await page.getByRole('button', { name: 'Import dataset', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Know your columns' })).toBeVisible();
   await page.getByRole('button', { name: 'Clean', exact: true }).click();
@@ -121,18 +119,19 @@ test('renders chart types and reviews similar values without merging', async ({ 
   await page.getByRole('button', { name: 'Find similar values' }).click();
   await expect(page.locator('.candidate-list')).toContainText('Ava');
   await expect(page.locator('.metric').first()).toContainText('13');
+  await page.getByRole('button', { name: 'Charts', exact: true }).click();
+  await page.getByRole('combobox', { name: 'Chart type', exact: true }).selectOption('histogram');
+  await expect(page.getByRole('heading', { name: 'Choose compatible columns' })).toBeVisible();
 });
 test('rejects malformed imports, protects sessions and deletes private data', async ({
   page,
   browser,
 }) => {
-  await page
-    .getByLabel('Upload CSV or Excel file')
-    .setInputFiles({
-      name: 'broken.csv',
-      mimeType: 'text/csv',
-      buffer: Buffer.from('Name,Amount\nAva,2,extra\n'),
-    });
+  await page.getByLabel('Upload CSV or Excel file').setInputFiles({
+    name: 'broken.csv',
+    mimeType: 'text/csv',
+    buffer: Buffer.from('Name,Amount\nAva,2,extra\n'),
+  });
   await page.getByRole('button', { name: 'Import dataset', exact: true }).click();
   await expect(page.getByRole('alert')).toBeVisible();
   await page.getByRole('button', { name: 'Cancel', exact: true }).click();

@@ -294,3 +294,21 @@ def test_twenty_step_cap_and_rate_limits():
         assert client.get("/api/health").status_code == 200
         assert client.get("/api/health").status_code == 200
         assert client.get("/api/health").status_code == 429
+
+
+def test_optional_static_frontend_does_not_expose_source(tmp_path, monkeypatch):
+    import app.main as main
+    from fastapi.testclient import TestClient
+
+    monkeypatch.setenv("SERVE_WEB", "true")
+    monkeypatch.setattr(main, "ROOT", tmp_path)
+    (tmp_path / "dist" / "assets").mkdir(parents=True)
+    (tmp_path / "dist" / "index.html").write_text("<h1>DataForge</h1>")
+    (tmp_path / "dist" / "assets" / "app.js").write_text("console.log('app')")
+    (tmp_path / "private.txt").write_text("not public")
+    with TestClient(main.create_app()) as client:
+        assert client.get("/").text == "<h1>DataForge</h1>"
+        assert client.get("/workspace").text == "<h1>DataForge</h1>"
+        assert client.get("/private.txt").text == "<h1>DataForge</h1>"
+        assert client.get("/assets/app.js").status_code == 200
+        assert client.get("/api/not-a-route").status_code == 404

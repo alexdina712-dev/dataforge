@@ -23,6 +23,7 @@ export function ChartsPage({ dataset }: { dataset: Dataset }) {
     let cancelled = false;
     setChart(null);
     setError('');
+    setLoading(false);
     if (!chosenX || (needsY && !chosenY)) return;
     setLoading(true);
     const query = new URLSearchParams({ kind, x: chosenX, ...(needsY ? { y: chosenY } : {}) });

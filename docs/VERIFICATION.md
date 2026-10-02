@@ -2,7 +2,7 @@
 
 Date: 2 October 2026. Tests use fictional data only.
 
-- Python: 67 domain/API/security tests; Ruff lint and formatting.
+- Python: 68 domain/API/security tests; Ruff lint and formatting.
 - Frontend: 9 validation/display unit tests; TypeScript and Vite production build.
 - Browser: six critical workflows on desktop and mobile Chromium (12 cases), real CSV/XLSX imports, profile/pagination, preview/apply, undo/reset, four charts, duplicate review, downloads, privacy and deletion.
 - Screenshots: actual running application, desktop and 390px mobile. No synthetic product mockups.
