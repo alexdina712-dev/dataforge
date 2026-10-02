@@ -1,3 +1,5 @@
+Latest follow-up: [2 October 2026 QA audit](QA_AUDIT_2026-10-02.md). Earlier counts below record the original delivery.
+
 # Verification record
 
 Date: 2 October 2026. Tests use fictional data only.

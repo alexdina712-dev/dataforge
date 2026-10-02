@@ -163,3 +163,7 @@ Implemented with AI assistance and verified through automated tests and real bro
 Source is available for portfolio review; **no open-source license grant is supplied**. Original project rights are reserved to preserve deliberate future commercial licensing. Third-party dependencies retain their licenses; commercial hosting/dependency obligations need review before launch.
 
 References: [FastAPI uploads](https://fastapi.tiangolo.com/tutorial/request-files/), [pandas CSV](https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html), [openpyxl](https://openpyxl.readthedocs.io/en/stable/), [Render FastAPI](https://render.com/docs/deploy-fastapi).
+
+## Latest quality audit
+
+See [QA audit — 2 October 2026](docs/QA_AUDIT_2026-10-02.md) for expanded device coverage, reproduced fixes, dependency checks and verification limits.
