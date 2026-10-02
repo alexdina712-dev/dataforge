@@ -29,7 +29,19 @@ $runtimeDir = Join-Path $projectRoot '.runtime'
 New-Item -ItemType Directory -Path $runtimeDir -Force | Out-Null
 $nodeExe = (Get-Command node).Source
 $launcher = Join-Path $PSScriptRoot 'local-server.mjs'
-Start-Process -FilePath $nodeExe -ArgumentList @(('"' + $launcher + '"'), 'start') -WorkingDirectory $projectRoot -WindowStyle Hidden -RedirectStandardOutput (Join-Path $runtimeDir 'launcher.log') -RedirectStandardError (Join-Path $runtimeDir 'launcher-error.log')
+$launcherRunning = $false
+$stateFile = Join-Path $runtimeDir 'server.json'
+if (Test-Path -LiteralPath $stateFile) {
+    try {
+        $launcherState = Get-Content -LiteralPath $stateFile -Raw | ConvertFrom-Json
+        if ($launcherState.root -ne $projectRoot) { throw 'Launcher root mismatch.' }
+        $controlState = Invoke-RestMethod 'http://127.0.0.1:5177/control' -Headers @{'X-DataForge-Control'=$launcherState.token} -TimeoutSec 2
+        if ($controlState.root -eq $projectRoot) { $launcherRunning = $true }
+    } catch {}
+}
+if (-not $launcherRunning) {
+    Start-Process -FilePath $nodeExe -ArgumentList @(('"' + $launcher + '"'), 'start') -WorkingDirectory $projectRoot -WindowStyle Hidden -RedirectStandardOutput (Join-Path $runtimeDir 'launcher.log') -RedirectStandardError (Join-Path $runtimeDir 'launcher-error.log')
+}
 $ready = $false
 for ($attempt = 0; $attempt -lt 30; $attempt++) {
     try { $api = Invoke-RestMethod 'http://127.0.0.1:8004/api/health' -TimeoutSec 2; $web = Invoke-WebRequest 'http://127.0.0.1:5176' -TimeoutSec 2; if ($api.status -eq 'ok' -and $web.StatusCode -eq 200) { $ready = $true; break } } catch {}

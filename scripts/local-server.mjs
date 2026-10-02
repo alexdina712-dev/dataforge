@@ -44,6 +44,17 @@ if (action === 'stop') {
   if (state.root !== root) throw new Error('Launcher root mismatch');
   try {
     await request(state, 'DELETE');
+    let stopped = false;
+    for (let attempt = 0; attempt < 30; attempt++) {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+      try {
+        await request(state, 'GET');
+      } catch {
+        stopped = true;
+        break;
+      }
+    }
+    if (!stopped) throw new Error('Launcher did not finish stopping.');
     console.log('Stopped this DataForge instance.');
   } catch {
     throw new Error('No authenticated launcher responded; no unrelated processes were stopped.');
