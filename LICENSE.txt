@@ -1,0 +1,5 @@
+Copyright 2026 the DataForge project owner. All rights reserved.
+
+Source is publicly available for portfolio review. Publication grants no general permission to copy, modify, redistribute, sublicense or commercially exploit the original project. Contact the owner for permission.
+
+Third-party dependencies, icons and tools retain their respective licenses. This notice does not restrict those licenses.

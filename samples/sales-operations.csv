@@ -1,0 +1,28 @@
+Order ID,Order Date,Region,Service,Units,Unit Price,Payment Status
+ORD-1001,2026-09-01,South,Consulting,2,85,Pending
+ORD-1002,2026-09-02,West,Maintenance,3,120,Paid
+ORD-1003,2026-09-03,East,Website audit,4,240,Paid
+ORD-1004,2026-09-04, North ,Consulting,5,85,Pending
+ORD-1005,2026-09-05,South,Maintenance,1,,Paid
+ORD-1006,2026-09-06,West,Website audit,2,240,
+ORD-1007,2026-09-07,East,Consulting,3,85,Pending
+ORD-1008,2026-09-08, North ,Maintenance,4,120,Paid
+ORD-1009,2026-09-09,South,Website audit,5,240,Paid
+ORD-1010,2026-09-10,West,Consulting,1,85,Pending
+ORD-1011,2026-09-11,East,Maintenance,2,120,Paid
+ORD-1012,2026-09-12, North ,Website audit,3,240,Paid
+ORD-1013,2026-09-13,South,Consulting,4,,Pending
+ORD-1014,2026-09-14,West,Maintenance,5,120,Paid
+ORD-1015,2026-09-15,East,Website audit,1,240,Paid
+ORD-1016,2026-09-16, North ,Consulting,2,85,Pending
+ORD-1017,2026-09-17,South,Maintenance,3,120,
+ORD-1018,2026-09-18,West,Website audit,4,240,Paid
+ORD-1019,2026-09-19,East,Consulting,5,85,Pending
+ORD-1020,2026-09-20, North ,Maintenance,1,120,Paid
+ORD-1021,2026-09-21,South,Website audit,2,240,Paid
+ORD-1022,2026-09-22,West,Consulting,3,85,Pending
+ORD-1023,2026-09-23,East,Maintenance,4,120,Paid
+ORD-1024,2026-09-24, North ,Website audit,5,240,Paid
+ORD-1003,2026-09-03,East,Website audit,4,240,Paid
+ORD-1009,2026-09-09,South,Website audit,5,240,Paid
+ORD-1009,2026-09-09,South,Website audit,5,240,Paid

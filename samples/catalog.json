@@ -1,0 +1,35 @@
+[
+  {
+    "id": "sales",
+    "name": "Sales operations",
+    "description": "Find repeated orders, fill prices, and compare regions.",
+    "filename": "sales-operations.csv",
+    "format": "CSV",
+    "rows": 27,
+    "columns": 7,
+    "category": "Operations",
+    "sheet": null
+  },
+  {
+    "id": "contacts",
+    "name": "Customer directory",
+    "description": "Review near-duplicate names and tidy contact details.",
+    "filename": "customer-directory.csv",
+    "format": "CSV",
+    "rows": 13,
+    "columns": 5,
+    "category": "Relationships",
+    "sheet": null
+  },
+  {
+    "id": "inventory",
+    "name": "Inventory review",
+    "description": "Explore an Excel workbook with stock and supplier sheets.",
+    "filename": "inventory-review.xlsx",
+    "format": "XLSX",
+    "rows": 18,
+    "columns": 7,
+    "category": "Inventory",
+    "sheet": "Stock"
+  }
+]

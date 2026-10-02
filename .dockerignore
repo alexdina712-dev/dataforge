@@ -1,0 +1,15 @@
+node_modules
+.venv
+.git
+.env*
+!.env.example
+.runtime
+.vercel
+dist
+playwright-report
+playwright-public-report
+test-results
+__pycache__
+.pytest_cache
+.ruff_cache
+docs/screenshots
